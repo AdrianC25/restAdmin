@@ -22,4 +22,29 @@ class NoticiasController extends Controller
 
         return Response()->json(['nueva_noticia' => $new_noticia]);
     }
+
+    public function editarNoticia($idNoticia)
+    {
+        $noticia_elejida = Noticias::where('id', $idNoticia)->first();
+
+        return Response()->json(['noticia' => $noticia_elejida]);
+    }
+
+    public function guardarEditarNoticia(Request $request)
+    {
+        $idNoticia = $request->id;
+        $noticia_elejida = Noticias::find($idNoticia);
+        $noticia_elejida->titulo = $request->titulo;
+        $noticia_elejida->detalle = $request->detalle;
+        $noticia_elejida->save();
+
+        return Response()->json(['noticia_elejida' => $noticia_elejida]);
+    }
+
+    public function eliminarNoticia($idNoticia)
+    {
+        $producto_elejido = Noticias::find($idNoticia)->delete();
+
+        return Response()->json(['noticia' => 'Novedad Eliminada Exitosamente']);
+    }
 }

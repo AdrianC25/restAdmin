@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
-  <div class="row">
-      @include('layouts.navbar')
-  </div>
+    <div class="row">
+        @include('layouts.navbar')
+    </div>
 </div>
 @endsection
 
