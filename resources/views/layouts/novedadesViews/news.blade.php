@@ -1,7 +1,7 @@
  <!-- Contenido Principal del Dashboard -->
  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2 text-capitalize">Nuestras novedades</h1>
+        <h1 class="h2 text-capitalize">Administrar Ofertas</h1>
         <i class="fas fa-plus btn add-noticia" data-bs-toggle="modal"
         data-bs-target="#agregarNoticia" style="color: green;"> Agregar</i>
     </div>
@@ -23,7 +23,6 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $noticia->titulo }}</h5>
                     <p class="card-text">{{ $noticia->detalle }}</p>
-                    <a href="#" class="btn btn-success">Realizar Reserva</a>
                 </div>
             </div>
         </div>

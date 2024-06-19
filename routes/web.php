@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
+//welcome
+Route::get('/',[NoticiasController::class,'welcome'])->name('noticias');
+
 
 // noticias
 Route::get('/novedades',[NoticiasController::class,'index'])->name('noticias');

@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class NoticiasController extends Controller
 {
+    public function welcome()
+    {
+        $noticias = Noticias::all();
+        return view('welcome', compact('noticias'));
+    }
+
     public function index()
     {
         $noticias = Noticias::all();
@@ -45,6 +51,6 @@ class NoticiasController extends Controller
     {
         $producto_elejido = Noticias::find($idNoticia)->delete();
 
-        return Response()->json(['noticia' => 'Novedad Eliminada Exitosamente']);
+        return Response()->json(['noticia' => 'Novedad Eliminada']);
     }
 }

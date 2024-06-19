@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             @include('layouts.navbar')
-            @include('layouts.welcomeViews.news')
+            @include('layouts.novedadesViews.news')
         </div>
     </div>
 @endsection
@@ -52,13 +52,12 @@
                 }
             });
             console.log('Ready to Work');
-            // crear producto 
+            // Crear producto
             $('#btn_guardar_noticia').on('click', function(event) {
                 event.preventDefault();
 
                 var titulo = $('#tituloNoticiaInput').val();
                 var detalle = $('#detalleNoticiaInput').val();
-
 
                 var argumento = {
                     titulo: titulo,
@@ -77,15 +76,27 @@
                         console.log('Noticia Guardada');
                         console.log(respuesta);
                         $('#agregarNoticia').modal('hide');
-                        location.reload();
+                        Swal.fire({
+                            position: "top-center",
+                            icon: "success",
+                            title: "Tu noticia ha sido guardada",
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            location.reload();
+                        });
                     })
                     .fail(function(jqXHR, textStatus, errorThrown) {
                         console.log('Error: ', errorThrown);
-                        alert('Ha ocurrido un error al intentar guardar. Intenta Nuevamente.');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error al guardar',
+                            text: 'Ha ocurrido un error al intentar guardar. Intenta Nuevamente.'
+                        });
                     });
-            }); //fin funcion
+            });
 
-            // Modulo editar producto 
+            // Modulo editar noticia  
             $('.edit-noticia').on('click', function(event) {
                 event.preventDefault();
                 var idNoticia = $(this).data('id');
@@ -129,11 +140,23 @@
                         console.log('Noticia Editada Correctamente');
                         console.log(respuesta);
                         $('#editarNoticia').modal('hide');
-                        location.reload();
+                        Swal.fire({
+                            position: "top-center",
+                            icon: "success",
+                            title: "Tu noticia ha sido editada",
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            location.reload();
+                        });
                     })
                     .fail(function(jqXHR, textStatus, errorThrown) {
                         console.log('Error: ', errorThrown);
-                        alert('Ha ocurrido un error al intentar editar. Intenta Nuevamente.');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error al guardar',
+                            text: 'Ha ocurrido un error al intentar guardar. Intenta Nuevamente.'
+                        });
                     });
             }); //fin funcion
 
@@ -143,22 +166,43 @@
 
                 var idNoticia = $(this).data('id');
                 console.log('id noticia: ' + idNoticia);
-                if (confirm('¿Estas seguro de  eliminar esta Novedad?')) {
-                    $.ajax({
-                            url: '/novedades/eliminar/' + idNoticia,
-                            type: 'DELETE',
-                            dataType: 'json',
-                        })
-                        .done(function(respuesta) {
-                            alert(respuesta.noticia);
-                            window.location.href = '/novedades';
-                        })
-                        .fail(function(jqXHR, textStatus, errorThrown) {
-                            console.log('Error: ', errorThrown);
-                            alert('Ha ocurrido un error al intentar ELIMINAR. Intenta Nuevamente.');
-                        });
-                }
-            }); //fin funcion 
+
+                Swal.fire({
+                    title: "¿Estas Seguro de Eliminar esta Noticia?",
+                    text: "¡Esto no se podrá revertir!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Sí, Eliminar!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                                url: '/novedades/eliminar/' + idNoticia,
+                                type: 'DELETE',
+                                dataType: 'json',
+                            })
+                            .done(function(respuesta) {
+                                Swal.fire({
+                                    title: "¡Noticia Eliminada!",
+                                    text: "Tu noticia ha sido eliminada.",
+                                    icon: "success"
+                                }).then(() => {
+                                    window.location.href = '/novedades';
+                                });
+                            })
+                            .fail(function(jqXHR, textStatus, errorThrown) {
+                                console.log('Error: ', errorThrown);
+                                Swal.fire({
+                                    title: "Error",
+                                    text: "Ha ocurrido un error al intentar ELIMINAR. Intenta Nuevamente.",
+                                    icon: "error"
+                                });
+                            });
+                    }
+                });
+            }); // fin funcion
+
         }); //fin document 
     </script>
 @endsection

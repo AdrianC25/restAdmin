@@ -3,6 +3,7 @@
 <div class="container-fluid">
     <div class="row">
         @include('layouts.navbar')
+        @include('layouts.welcomeViews.home')
     </div>
 </div>
 @endsection
@@ -38,5 +39,21 @@
             background-color: #495057;
         }
     </style>
+@endsection
+
+@section('javascript')
+    @parent
+    <script>
+        // coneccion con ajax 
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            console.log('Ready to Work');
+        
+        }); //fin document 
+    </script>
 @endsection
 
