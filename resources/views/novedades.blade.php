@@ -12,31 +12,50 @@
     @parent
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
         }
 
         .sidebar {
-            height: 100vh;
+            height: calc(100vh - 56px);
+            padding: 0;
+            position: fixed;
+            top: 56px;
+            /* Ajusta la posición para que quede debajo del navbar */
+            left: 0;
+            overflow-y: auto;
+            z-index: 100;
             background-color: #343a40;
-            color: #fff;
-            padding-top: 1rem;
         }
 
-        .sidebar a {
-            color: #adb5bd;
-            text-decoration: none;
+        .sidebar .nav-link {
+            color: #ffffff;
         }
 
-        .sidebar a:hover {
-            color: #fff;
-        }
-
-        .sidebar .nav-item {
-            padding: 0.5rem 1rem;
-        }
-
-        .sidebar .nav-item.active {
+        .sidebar .nav-link:hover {
             background-color: #495057;
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 15px;
+            margin-top: 56px;
+            /* Ajusta el margen superior para evitar que quede debajo del navbar */
+        }
+
+        @media (max-width: 767.98px) {
+            .sidebar {
+                position: relative;
+                height: auto;
+                top: 0;
+            }
+
+            .content {
+                margin-left: 0;
+            }
         }
     </style>
 @endsection

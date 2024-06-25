@@ -1,7 +1,12 @@
-<!-- Navbar Superior -->
-<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+ <!-- Navbar Superior -->
+ <nav class="sb-topnav navbar navbar-expand-lg navbar-dark bg-dark">
     <!-- Navbar Brand-->
     <a class="navbar-brand ps-3" href="/">Rest Admin</a>
+    <!-- Botón de menú colapsable -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+        aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
         <li class="nav-item dropdown">
@@ -21,7 +26,7 @@
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar del Dashboard -->
-        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
             <div class="position-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -31,7 +36,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/novedades">
+                        <a class="nav-link" href="/novedades">
                             <i class="fas fa-tachometer-alt"></i>
                             Administrar Ofertas
                         </a>
@@ -39,9 +44,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                             aria-expanded="false">
-                                <i class="fas fa-columns"></i>
-                                Pedidos y Reservas
-                            </a>
+                            <i class="fas fa-columns"></i>
+                            Pedidos y Reservas
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Pedidos</a></li>
                             <li>
